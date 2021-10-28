@@ -16,16 +16,13 @@ public class FindAllClientController {
   @Autowired
   private FindAllClientService findAllClientService;
 
-  @Autowired
-  private ClientMapper clientMapper;
-
   @GetMapping("/clients")
   public ResponseEntity<List<ClientDTO>> handle() {
     List<Client> clients = findAllClientService.execute();
 
     List<ClientDTO> clientsDto = new ArrayList<>();
     for (Client client : clients) {
-      clientsDto.add(clientMapper.toDto(client));
+      clientsDto.add(ClientMapper.toDto(client));
     }
 
     return ResponseEntity.ok().body(clientsDto);

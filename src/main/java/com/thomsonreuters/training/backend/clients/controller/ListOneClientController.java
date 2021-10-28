@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ListOneClientController {
   @Autowired
   private ListOneClientService listOneClientService;
-  @Autowired
-  private ClientMapper clientMapper;
 
   @GetMapping("/clients/{id}")
   public ClientDTO handle(@PathVariable String id) {
@@ -23,6 +21,6 @@ public class ListOneClientController {
 
     Client client = this.listOneClientService.execute(uuid);
 
-    return clientMapper.toDto(client);
+    return ClientMapper.toDto(client);
   }
 }
