@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UpdateClientController {
   @Autowired
   private UpdateClientService updateClientService;
+  @Autowired
+  private ClientMapper clientMapper;
 
   @PutMapping("/clients/{id}")
   public ResponseEntity<Object> handle(@PathVariable String id, @RequestBody ClientDTO clientDto) {
     clientDto.setId(id);
-    Client client = ClientMapper.toEntity(clientDto);
+    Client client = clientMapper.toEntity(clientDto);
     this.updateClientService.execute(client);
 
     return ResponseEntity.ok().build();

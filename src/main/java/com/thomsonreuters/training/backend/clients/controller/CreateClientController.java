@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class CreateClientController {
   @Autowired
   private CreateClientService createClientService;
+  @Autowired
+  private ClientMapper clientMapper;
 
   @PostMapping("/clients")
   public ResponseEntity<Object> handle(@RequestBody ClientDTO clientDto) {
 
-    Client client = ClientMapper.toEntity(clientDto);
+    Client client = clientMapper.toEntity(clientDto);
     createClientService.execute(client);
     return ResponseEntity.status(201).build();
   }

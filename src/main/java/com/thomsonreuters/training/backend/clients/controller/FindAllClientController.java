@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class FindAllClientController {
   @Autowired
   private FindAllClientService findAllClientService;
+  @Autowired
+  private ClientMapper clientMapper;
 
   @GetMapping("/clients")
   public ResponseEntity<List<ClientDTO>> handle() {
@@ -22,7 +24,7 @@ public class FindAllClientController {
 
     List<ClientDTO> clientsDto = new ArrayList<>();
     for (Client client : clients) {
-      clientsDto.add(ClientMapper.toDto(client));
+      clientsDto.add(clientMapper.toDto(client));
     }
 
     return ResponseEntity.ok().body(clientsDto);
