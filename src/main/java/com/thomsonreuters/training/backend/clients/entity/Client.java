@@ -21,6 +21,11 @@ public class Client {
     this.name = name;
   }
 
+  public Client(UUID identifier, String name) {
+    this.identifier = identifier;
+    this.name = name;
+  }
+
   public UUID getIdentifier() {
     return identifier;
   }
