@@ -1,4 +1,4 @@
-package com.thomsonreuters.training.backend.job.entity;
+package com.thomsonreuters.training.backend.jobs.entity;
 
 import java.util.UUID;
 import javax.persistence.Id;

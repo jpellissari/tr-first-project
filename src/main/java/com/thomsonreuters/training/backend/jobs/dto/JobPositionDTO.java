@@ -1,4 +1,4 @@
-package com.thomsonreuters.training.backend.job.dto;
+package com.thomsonreuters.training.backend.jobs.dto;
 
 public class JobPositionDTO {
   String id;

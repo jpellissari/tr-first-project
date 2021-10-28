@@ -1,4 +1,4 @@
-package com.thomsonreuters.training.backend.job.exception;
+package com.thomsonreuters.training.backend.jobs.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

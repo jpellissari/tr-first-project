@@ -1,8 +1,8 @@
-package com.thomsonreuters.training.backend.job.mapper;
+package com.thomsonreuters.training.backend.jobs.mapper;
 
 import java.util.UUID;
-import com.thomsonreuters.training.backend.job.dto.JobPositionDTO;
-import com.thomsonreuters.training.backend.job.entity.JobPosition;
+import com.thomsonreuters.training.backend.jobs.dto.JobPositionDTO;
+import com.thomsonreuters.training.backend.jobs.entity.JobPosition;
 import org.springframework.stereotype.Component;
 
 @Component

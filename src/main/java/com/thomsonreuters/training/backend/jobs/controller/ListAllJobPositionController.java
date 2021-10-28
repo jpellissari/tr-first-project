@@ -1,4 +1,4 @@
-package com.thomsonreuters.training.backend.job.controller;
+package com.thomsonreuters.training.backend.jobs.controller;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.thomsonreuters.training.backend.job.dto.JobPositionDTO;
-import com.thomsonreuters.training.backend.job.entity.JobPosition;
-import com.thomsonreuters.training.backend.job.mapper.JobPositionMapper;
-import com.thomsonreuters.training.backend.job.service.ListAllJobPositionService;
+import com.thomsonreuters.training.backend.jobs.dto.JobPositionDTO;
+import com.thomsonreuters.training.backend.jobs.entity.JobPosition;
+import com.thomsonreuters.training.backend.jobs.mapper.JobPositionMapper;
+import com.thomsonreuters.training.backend.jobs.service.ListAllJobPositionService;
 
 @RestController
 public class ListAllJobPositionController {
