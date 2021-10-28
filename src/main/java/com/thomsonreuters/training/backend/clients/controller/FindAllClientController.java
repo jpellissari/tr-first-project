@@ -1,6 +1,9 @@
 package com.thomsonreuters.training.backend.clients.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import com.thomsonreuters.training.backend.clients.dto.ClientDTO;
+import com.thomsonreuters.training.backend.clients.mapper.ClientMapper;
 import com.thomsonreuters.training.backend.clients.service.FindAllClientService;
 import com.thomsonreuters.training.backend.clients.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +16,18 @@ public class FindAllClientController {
   @Autowired
   private FindAllClientService findAllClientService;
 
+  @Autowired
+  private ClientMapper clientMapper;
+
   @GetMapping("/clients")
-  public ResponseEntity<List<Client>> handle() {
-    return ResponseEntity.ok().body(findAllClientService.execute());
+  public ResponseEntity<List<ClientDTO>> handle() {
+    List<Client> clients = findAllClientService.execute();
+
+    List<ClientDTO> clientsDto = new ArrayList<>();
+    for (Client client : clients) {
+      clientsDto.add(clientMapper.toDto(client));
+    }
+
+    return ResponseEntity.ok().body(clientsDto);
   }
 }

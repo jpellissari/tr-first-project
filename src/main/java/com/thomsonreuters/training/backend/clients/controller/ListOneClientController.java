@@ -1,7 +1,9 @@
 package com.thomsonreuters.training.backend.clients.controller;
 
 import java.util.UUID;
+import com.thomsonreuters.training.backend.clients.dto.ClientDTO;
 import com.thomsonreuters.training.backend.clients.entity.Client;
+import com.thomsonreuters.training.backend.clients.mapper.ClientMapper;
 import com.thomsonreuters.training.backend.clients.service.ListOneClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class ListOneClientController {
   @Autowired
   private ListOneClientService listOneClientService;
+  @Autowired
+  private ClientMapper clientMapper;
 
   @GetMapping("/clients/{id}")
-  public Client handle(@PathVariable UUID id) {
-    return this.listOneClientService.execute(id);
+  public ClientDTO handle(@PathVariable String id) {
+    UUID uuid = UUID.fromString(id);
+
+    Client client = this.listOneClientService.execute(uuid);
+
+    return clientMapper.toDto(client);
   }
 }
