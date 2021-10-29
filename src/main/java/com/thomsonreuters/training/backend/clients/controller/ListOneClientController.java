@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ListOneClientController {
-  @Autowired
-  private ListOneClientService listOneClientService;
-  @Autowired
-  private ClientMapper clientMapper;
+  @Autowired private ListOneClientService listOneClientService;
+  @Autowired private ClientMapper clientMapper;
 
   @GetMapping("/clients/{id}")
   public ClientDTO handle(@PathVariable String id) {

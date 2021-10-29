@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UpdateClientService {
-  @Autowired
-  private ClientRepository clientRepository;
+  @Autowired private ClientRepository clientRepository;
 
   public void execute(Client client) {
     Optional<Client> findClient = this.clientRepository.findById(client.getIdentifier());
-    if(findClient.isEmpty()) {
+    if (findClient.isEmpty()) {
       throw new ClientNotFoundException();
     }
 

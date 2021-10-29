@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UpdateJobPositionService {
-  @Autowired
-  private JobPositionRepository jobPositionRepository;
+  @Autowired private JobPositionRepository jobPositionRepository;
 
   public void execute(JobPosition jobPosition) {
-    Optional<JobPosition> findJobPosition = this.jobPositionRepository.findById(jobPosition.getIdentifier());
-    if(findJobPosition.isEmpty()) {
+    Optional<JobPosition> findJobPosition =
+        this.jobPositionRepository.findById(jobPosition.getIdentifier());
+    if (findJobPosition.isEmpty()) {
       throw new JobPositionNotFoundException();
     }
 

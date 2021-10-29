@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CreateClientController {
-  @Autowired
-  private CreateClientService createClientService;
-  @Autowired
-  private ClientMapper clientMapper;
+  @Autowired private CreateClientService createClientService;
+  @Autowired private ClientMapper clientMapper;
 
   @PostMapping("/clients")
   public ResponseEntity<Object> handle(@RequestBody ClientDTO clientDto) {

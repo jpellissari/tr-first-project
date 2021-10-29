@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FindAllClientService {
-  @Autowired
-  private ClientRepository clientRepository;
+  @Autowired private ClientRepository clientRepository;
 
   public List<Client> execute() {
     return this.clientRepository.findAll();

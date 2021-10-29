@@ -13,6 +13,7 @@ public class Client {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID identifier;
+
   private String name;
 
   public Client() {}

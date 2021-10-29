@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UpdateClientController {
-  @Autowired
-  private UpdateClientService updateClientService;
-  @Autowired
-  private ClientMapper clientMapper;
+  @Autowired private UpdateClientService updateClientService;
+  @Autowired private ClientMapper clientMapper;
 
   @PutMapping("/clients/{id}")
   public ResponseEntity<Object> handle(@PathVariable String id, @RequestBody ClientDTO clientDto) {

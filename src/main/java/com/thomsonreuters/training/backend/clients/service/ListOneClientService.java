@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ListOneClientService {
-  @Autowired
-  private ClientRepository clientRepository;
+  @Autowired private ClientRepository clientRepository;
 
   public Client execute(UUID id) throws ClientNotFoundException {
     return this.clientRepository.findById(id).orElseThrow(ClientNotFoundException::new);
