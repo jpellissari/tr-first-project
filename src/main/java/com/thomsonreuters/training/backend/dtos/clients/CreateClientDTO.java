@@ -1,4 +1,4 @@
-package com.thomsonreuters.training.backend.dtos.client;
+package com.thomsonreuters.training.backend.dtos.clients;
 
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;

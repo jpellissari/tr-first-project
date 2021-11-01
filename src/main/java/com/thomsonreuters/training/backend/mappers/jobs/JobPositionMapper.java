@@ -1,8 +1,8 @@
-package com.thomsonreuters.training.backend.jobs.mapper;
+package com.thomsonreuters.training.backend.mappers.jobs;
 
 import java.util.UUID;
-import com.thomsonreuters.training.backend.jobs.dto.JobPositionDTO;
-import com.thomsonreuters.training.backend.jobs.entity.JobPosition;
+import com.thomsonreuters.training.backend.dtos.jobs.JobPositionDTO;
+import com.thomsonreuters.training.backend.entities.JobPosition;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,9 +12,6 @@ public class JobPositionMapper {
   }
 
   public JobPosition toEntity(JobPositionDTO jobPositionDto) {
-    if (jobPositionDto.getId() == null) {
-      return new JobPosition(jobPositionDto.getName());
-    }
     UUID uuid = UUID.fromString(jobPositionDto.getId());
     return new JobPosition(uuid, jobPositionDto.getName());
   }

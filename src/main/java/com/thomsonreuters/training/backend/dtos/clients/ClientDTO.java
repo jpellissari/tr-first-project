@@ -1,4 +1,4 @@
-package com.thomsonreuters.training.backend.dtos.client;
+package com.thomsonreuters.training.backend.dtos.clients;
 
 public class ClientDTO {
   String id;

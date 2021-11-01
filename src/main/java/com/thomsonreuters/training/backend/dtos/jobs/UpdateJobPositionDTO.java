@@ -1,20 +1,14 @@
-package com.thomsonreuters.training.backend.dtos.client;
+package com.thomsonreuters.training.backend.dtos.jobs;
 
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
-public class UpdateClientDTO {
+public class UpdateJobPositionDTO {
   String id;
 
   @NotEmpty
-  @Length(max = 60)
+  @Length(max = 50)
   String name;
-
-  public UpdateClientDTO() {}
-
-  public UpdateClientDTO(String name) {
-    this.name = name;
-  }
 
   public String getId() {
     return id;

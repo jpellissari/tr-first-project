@@ -1,12 +1,8 @@
-package com.thomsonreuters.training.backend.jobs.dto;
+package com.thomsonreuters.training.backend.dtos.jobs;
 
 public class JobPositionDTO {
   String id;
   String name;
-
-  public JobPositionDTO(String name) {
-    this.name = name;
-  }
 
   public JobPositionDTO(String id, String name) {
     this.id = id;
@@ -19,9 +15,5 @@ public class JobPositionDTO {
 
   public String getName() {
     return name;
-  }
-
-  public void setId(String id) {
-    this.id = id;
   }
 }

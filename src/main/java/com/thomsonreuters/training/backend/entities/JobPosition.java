@@ -1,11 +1,11 @@
-package com.thomsonreuters.training.backend.jobs.entity;
+package com.thomsonreuters.training.backend.entities;
 
 import java.util.UUID;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "\"JobPosition\"")
@@ -13,6 +13,7 @@ public class JobPosition {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID identifier;
+
   private String name;
 
   public JobPosition() {}
@@ -32,9 +33,5 @@ public class JobPosition {
 
   public String getName() {
     return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 }
