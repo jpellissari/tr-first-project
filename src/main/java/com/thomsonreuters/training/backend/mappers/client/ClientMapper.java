@@ -1,8 +1,8 @@
-package com.thomsonreuters.training.backend.clients.mapper;
+package com.thomsonreuters.training.backend.mappers.client;
 
 import java.util.UUID;
-import com.thomsonreuters.training.backend.clients.dto.ClientDTO;
-import com.thomsonreuters.training.backend.clients.entity.Client;
+import com.thomsonreuters.training.backend.dtos.client.ClientDTO;
+import com.thomsonreuters.training.backend.entities.Client;
 import org.springframework.stereotype.Component;
 
 @Component

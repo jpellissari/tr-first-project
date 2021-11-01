@@ -1,18 +1,18 @@
-package com.thomsonreuters.training.backend.clients.controller;
+package com.thomsonreuters.training.backend.controllers;
 
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
-import com.thomsonreuters.training.backend.clients.dto.ClientDTO;
-import com.thomsonreuters.training.backend.clients.dto.CreateClientDTO;
-import com.thomsonreuters.training.backend.clients.dto.UpdateClientDTO;
-import com.thomsonreuters.training.backend.clients.entity.Client;
-import com.thomsonreuters.training.backend.clients.mapper.ClientMapper;
-import com.thomsonreuters.training.backend.clients.mapper.CreateClientMapper;
-import com.thomsonreuters.training.backend.clients.mapper.UpdateClientMapper;
-import com.thomsonreuters.training.backend.clients.service.ClientsService;
+import com.thomsonreuters.training.backend.dtos.client.ClientDTO;
+import com.thomsonreuters.training.backend.dtos.client.CreateClientDTO;
+import com.thomsonreuters.training.backend.dtos.client.UpdateClientDTO;
+import com.thomsonreuters.training.backend.entities.Client;
+import com.thomsonreuters.training.backend.mappers.client.ClientMapper;
+import com.thomsonreuters.training.backend.mappers.client.CreateClientMapper;
+import com.thomsonreuters.training.backend.mappers.client.UpdateClientMapper;
+import com.thomsonreuters.training.backend.services.ClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

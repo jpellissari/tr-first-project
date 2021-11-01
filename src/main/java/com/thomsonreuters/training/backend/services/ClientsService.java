@@ -1,11 +1,11 @@
-package com.thomsonreuters.training.backend.clients.service;
+package com.thomsonreuters.training.backend.services;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import com.thomsonreuters.training.backend.clients.entity.Client;
-import com.thomsonreuters.training.backend.clients.exception.ClientNotFoundException;
-import com.thomsonreuters.training.backend.clients.repository.ClientRepository;
+import com.thomsonreuters.training.backend.entities.Client;
+import com.thomsonreuters.training.backend.exceptions.ClientNotFoundException;
+import com.thomsonreuters.training.backend.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.thomsonreuters.training.backend.clients.entity;
+package com.thomsonreuters.training.backend.entities;
 
 import java.util.UUID;
 import javax.persistence.Entity;
