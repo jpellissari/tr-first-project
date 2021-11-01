@@ -13,9 +13,6 @@ public class ClientMapper {
   }
 
   public Client toEntity(ClientDTO clientDto) {
-    if (clientDto.getId() == null) {
-      return new Client(clientDto.getName());
-    }
     UUID uuid = UUID.fromString(clientDto.getId());
     return new Client(uuid, clientDto.getName());
   }
