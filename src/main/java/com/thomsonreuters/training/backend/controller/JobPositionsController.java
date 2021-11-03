@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import javax.validation.Valid;
 import com.thomsonreuters.training.backend.dto.jobs.CreateJobPositionDTO;
 import com.thomsonreuters.training.backend.dto.jobs.JobPositionDTO;
 import com.thomsonreuters.training.backend.dto.jobs.UpdateJobPositionDTO;
@@ -15,6 +14,7 @@ import com.thomsonreuters.training.backend.model.JobPosition;
 import com.thomsonreuters.training.backend.service.JobPositionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,7 +52,8 @@ public class JobPositionsController {
 
   @PostMapping
   public ResponseEntity<Object> create(
-      @RequestBody @Valid CreateJobPositionDTO data, UriComponentsBuilder uriComponentsBuilder) {
+      @RequestBody @Validated CreateJobPositionDTO data,
+      UriComponentsBuilder uriComponentsBuilder) {
     JobPosition jobPosition = jobPositionsService.create(createJobPositionMapper.toEntity(data));
 
     URI uri =
@@ -63,7 +64,7 @@ public class JobPositionsController {
 
   @PutMapping("/{id}")
   public ResponseEntity<Object> update(
-      @PathVariable String id, @RequestBody @Valid UpdateJobPositionDTO data) {
+      @PathVariable String id, @RequestBody @Validated UpdateJobPositionDTO data) {
     data.setId(id);
     JobPosition jobPosition = jobPositionsService.update(updateJobPositionMapper.toEntity(data));
 

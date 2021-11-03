@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import javax.validation.Valid;
 import com.thomsonreuters.training.backend.dto.clients.ClientDTO;
 import com.thomsonreuters.training.backend.dto.clients.CreateClientDTO;
 import com.thomsonreuters.training.backend.dto.clients.UpdateClientDTO;
@@ -15,6 +14,7 @@ import com.thomsonreuters.training.backend.model.Client;
 import com.thomsonreuters.training.backend.service.ClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,7 +50,7 @@ public class ClientsController {
 
   @PostMapping
   public ResponseEntity<Object> create(
-      @RequestBody @Valid CreateClientDTO data, UriComponentsBuilder uriComponentsBuilder) {
+      @RequestBody @Validated CreateClientDTO data, UriComponentsBuilder uriComponentsBuilder) {
     Client client = clientsService.create(createClientMapper.toEntity(data));
 
     URI uri =
@@ -61,7 +61,7 @@ public class ClientsController {
 
   @PutMapping("/{id}")
   public ResponseEntity<Object> update(
-      @PathVariable String id, @RequestBody @Valid UpdateClientDTO data) {
+      @PathVariable String id, @RequestBody @Validated UpdateClientDTO data) {
     data.setId(id);
     Client client = clientsService.update(updateClientMapper.toEntity(data));
 
