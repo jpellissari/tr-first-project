@@ -1,10 +1,12 @@
 package com.thomsonreuters.training.backend.dto.clients;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import com.thomsonreuters.training.backend.validators.UUID;
 import org.hibernate.validator.constraints.Length;
 
 public class UpdateClientDTO {
-  String id;
+  @NotNull @UUID String id;
 
   @NotEmpty
   @Length(max = 60)
