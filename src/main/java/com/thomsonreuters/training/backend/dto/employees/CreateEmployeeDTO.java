@@ -3,10 +3,10 @@ package com.thomsonreuters.training.backend.dto.employees;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import com.thomsonreuters.training.backend.validators.AnyOf;
+import com.thomsonreuters.training.backend.validators.Date;
 import com.thomsonreuters.training.backend.validators.UUID;
 import br.com.caelum.stella.bean.validation.CPF;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
@@ -21,7 +21,7 @@ public class CreateEmployeeDTO {
   @NotEmpty @CPF private String nationalIdentity;
 
   @NotEmpty
-  @DateTimeFormat(pattern = "dd/MM/yyyy")
+  @Date(pattern = "dd/MM/yyyy")
   private String birthdate;
 
   @NotNull
