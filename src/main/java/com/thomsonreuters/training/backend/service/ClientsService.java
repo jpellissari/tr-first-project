@@ -5,38 +5,38 @@ import java.util.Optional;
 import java.util.UUID;
 import com.thomsonreuters.training.backend.exception.ClientNotFoundException;
 import com.thomsonreuters.training.backend.model.Client;
-import com.thomsonreuters.training.backend.repository.ClientRepository;
+import com.thomsonreuters.training.backend.repository.ClientsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClientsService {
-  @Autowired private ClientRepository clientRepository;
+  @Autowired private ClientsRepository clientsRepository;
 
   public List<Client> getAll() {
-    return this.clientRepository.findAll();
+    return this.clientsRepository.findAll();
   }
 
   public Client get(UUID id) throws ClientNotFoundException {
-    return this.clientRepository.findById(id).orElseThrow(ClientNotFoundException::new);
+    return this.clientsRepository.findById(id).orElseThrow(ClientNotFoundException::new);
   }
 
   public Client create(Client client) {
-    return this.clientRepository.save(client);
+    return this.clientsRepository.save(client);
   }
 
   public Client update(Client client) {
-    Optional<Client> findClient = this.clientRepository.findById(client.getIdentifier());
+    Optional<Client> findClient = this.clientsRepository.findById(client.getIdentifier());
     if (findClient.isEmpty()) {
       throw new ClientNotFoundException();
     }
 
-    return this.clientRepository.save(client);
+    return this.clientsRepository.save(client);
   }
 
   public void delete(UUID id) throws ClientNotFoundException {
-    Client client = this.clientRepository.findById(id).orElseThrow(ClientNotFoundException::new);
+    Client client = this.clientsRepository.findById(id).orElseThrow(ClientNotFoundException::new);
 
-    clientRepository.delete(client);
+    clientsRepository.delete(client);
   }
 }
