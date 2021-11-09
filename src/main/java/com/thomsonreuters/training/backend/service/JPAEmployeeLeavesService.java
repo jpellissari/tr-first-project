@@ -2,7 +2,6 @@ package com.thomsonreuters.training.backend.service;
 
 import static com.thomsonreuters.training.backend.model.LeaveTypes.CONTRIBUTORS_DEATH;
 import static com.thomsonreuters.training.backend.model.LeaveTypes.TERMINATION;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,40 +22,27 @@ public class JPAEmployeeLeavesService implements EmployeeLeavesService {
   }
 
   public EmployeeLeave get(UUID id) throws EmployeeLeaveNotFoundException {
-    return null;
+    return employeeLeavesRepository.findById(id).orElseThrow(EmployeeLeaveNotFoundException::new);
   }
 
   public EmployeeLeave create(EmployeeLeave employeeLeave) {
-    List<LeaveTypes> forbiddenNewLeave = new ArrayList<>();
-    forbiddenNewLeave.add(CONTRIBUTORS_DEATH);
-    forbiddenNewLeave.add(TERMINATION);
+    verifyIfUserCanHaveAnotherLeave(employeeLeave);
+    LeaveTypes leaveType = employeeLeave.getLeaveType();
 
+    employeeLeave.setNumberDays(leaveType.getNumberOfDays());
+    employeeLeave.setReturnDate(leaveType.calculateReturnDate(employeeLeave.getLeaveDate()));
+
+    return employeeLeavesRepository.save(employeeLeave);
+  }
+
+  private void verifyIfUserCanHaveAnotherLeave(EmployeeLeave employeeLeave) {
     Optional<EmployeeLeave> leave =
         employeeLeavesRepository.findByEmployeeAndLeaveTypeIn(
-            employeeLeave.getEmployee(), forbiddenNewLeave);
+            employeeLeave.getEmployee(), List.of(CONTRIBUTORS_DEATH, TERMINATION));
 
     if (leave.isPresent()) {
       throw new EmployeeCanNotHaveMoreLeavesException(leave.get().getLeaveType().toString());
     }
-
-    switch (employeeLeave.getLeaveType()) {
-      case PATERNITY_LEAVE:
-        employeeLeave.setNumberDays(20);
-        employeeLeave.setReturnDate(employeeLeave.getLeaveDate().plusDays(20));
-        break;
-      case MATERNITY_LEAVE:
-        employeeLeave.setNumberDays(180);
-        employeeLeave.setReturnDate(employeeLeave.getLeaveDate().plusDays(180));
-        break;
-      case VACATION:
-        employeeLeave.setReturnDate(
-            employeeLeave.getLeaveDate().plusDays(employeeLeave.getNumberDays()));
-        break;
-      default:
-        break;
-    }
-
-    return employeeLeavesRepository.save(employeeLeave);
   }
 
   public EmployeeLeave update(EmployeeLeave jobPosition) {
