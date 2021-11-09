@@ -29,7 +29,7 @@ public class CreateEmployeeDTO {
   private double salary;
 
   @NotEmpty
-  @AnyOf(anyOf = {"intern", "employee", "partner"})
+  @AnyOf({"intern", "employee", "partner"})
   private String type;
 
   public String getClientId() {
