@@ -10,9 +10,9 @@ public interface EmployeeLeavesService {
 
   EmployeeLeave get(UUID id) throws EmployeeLeaveNotFoundException;
 
-  EmployeeLeave create(EmployeeLeave jobPosition);
+  EmployeeLeave create(EmployeeLeave employeeLeave);
 
-  EmployeeLeave update(EmployeeLeave jobPosition);
+  EmployeeLeave update(EmployeeLeave employeeLeave);
 
   void delete(UUID id) throws EmployeeLeaveNotFoundException;
 }
