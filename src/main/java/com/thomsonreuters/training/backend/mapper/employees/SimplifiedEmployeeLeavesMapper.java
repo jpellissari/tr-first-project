@@ -14,28 +14,41 @@ public class SimplifiedEmployeeLeavesMapper {
     SimplifiedEmployeeLeaveDTO simplifiedEmployeeLeave = new SimplifiedEmployeeLeaveDTO();
 
     simplifiedEmployeeLeave.setId(leave.getIdentifier().toString());
+    simplifiedEmployeeLeave.setClientId(leave.getClient().getIdentifier().toString());
+    simplifiedEmployeeLeave.setEmployeeId(leave.getEmployee().getIdentifier().toString());
     simplifiedEmployeeLeave.setLeaveType(leave.getLeaveType().toString());
     simplifiedEmployeeLeave.setLeaveDate(leave.getLeaveDate().format(formatter));
     simplifiedEmployeeLeave.setNumberDays(leave.getNumberDays());
-    simplifiedEmployeeLeave.setReturnDate(leave.getReturnDate().format(formatter));
-    simplifiedEmployeeLeave.setType(leave.getType().toString());
+    if (leave.getReturnDate() != null) {
+      simplifiedEmployeeLeave.setReturnDate(leave.getReturnDate().format(formatter));
+    }
+    if (leave.getType() != null) {
+      simplifiedEmployeeLeave.setType(leave.getType().toString());
+    }
 
     return simplifiedEmployeeLeave;
   }
 
   public List<SimplifiedEmployeeLeaveDTO> toDto(List<EmployeeLeave> leaves) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    SimplifiedEmployeeLeaveDTO simplifiedEmployeeLeave = new SimplifiedEmployeeLeaveDTO();
 
     return leaves.stream()
         .map(
             leave -> {
+              SimplifiedEmployeeLeaveDTO simplifiedEmployeeLeave = new SimplifiedEmployeeLeaveDTO();
+
               simplifiedEmployeeLeave.setId(leave.getIdentifier().toString());
+              simplifiedEmployeeLeave.setClientId(leave.getClient().getIdentifier().toString());
+              simplifiedEmployeeLeave.setEmployeeId(leave.getEmployee().getIdentifier().toString());
               simplifiedEmployeeLeave.setLeaveType(leave.getLeaveType().toString());
               simplifiedEmployeeLeave.setLeaveDate(leave.getLeaveDate().format(formatter));
               simplifiedEmployeeLeave.setNumberDays(leave.getNumberDays());
-              simplifiedEmployeeLeave.setReturnDate(leave.getReturnDate().format(formatter));
-              simplifiedEmployeeLeave.setType(leave.getType().toString());
+              if (leave.getReturnDate() != null) {
+                simplifiedEmployeeLeave.setReturnDate(leave.getReturnDate().format(formatter));
+              }
+              if (leave.getType() != null) {
+                simplifiedEmployeeLeave.setType(leave.getType().toString());
+              }
 
               return simplifiedEmployeeLeave;
             })
