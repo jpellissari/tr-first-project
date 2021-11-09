@@ -13,6 +13,17 @@ import org.springframework.stereotype.Service;
 public class EmployeesService {
   @Autowired private EmployeesRepository employeesRepository;
 
+  private boolean existsClientWithNationalIdentityWorkingOnClient(Employee employee) {
+    return this.employeesRepository
+        .findByNationalIdentityAndClientIdentifier(
+            employee.getNationalIdentity(), employee.getClient().getIdentifier())
+        .isPresent();
+  }
+
+  private boolean clientIdChanged(Employee oldEmployee, Employee newEmployee) {
+    return !oldEmployee.getClient().equals(newEmployee.getClient());
+  }
+
   public List<Employee> getAll() {
     return employeesRepository.findAll();
   }
@@ -22,19 +33,31 @@ public class EmployeesService {
   }
 
   public Employee create(Employee employee) {
-    if (this.employeesRepository
-        .findByNationalIdentityAndClientIdentifier(
-            employee.getNationalIdentity(), employee.getClient().getIdentifier())
-        .isPresent()) {
+    if (existsClientWithNationalIdentityWorkingOnClient(employee)) {
       throw new EmployeeAlreadyExistsException();
     }
     return employeesRepository.save(employee);
   }
 
-  public Employee update(Employee client) {
-    return employeesRepository
-        .findById(client.getIdentifier())
-        .orElseThrow(EmployeeNotFoundException::new);
+  public Employee update(UUID id, Employee newEmployee) {
+    Employee findEmployee =
+        employeesRepository.findById(id).orElseThrow(EmployeeNotFoundException::new);
+
+    if (clientIdChanged(findEmployee, newEmployee)
+        && existsClientWithNationalIdentityWorkingOnClient(newEmployee)) {
+      throw new EmployeeAlreadyExistsException();
+    }
+
+    findEmployee.setActive(newEmployee.isActive());
+    findEmployee.setBirthdate(newEmployee.getBirthdate());
+    findEmployee.setClient(newEmployee.getClient());
+    findEmployee.setJobPosition(newEmployee.getJobPosition());
+    findEmployee.setName(newEmployee.getName());
+    findEmployee.setSalary(newEmployee.getSalary());
+    findEmployee.setType(newEmployee.getType());
+    findEmployee.setNationalIdentity(newEmployee.getNationalIdentity());
+
+    return employeesRepository.save(findEmployee);
   }
 
   public void delete(UUID id) {
