@@ -50,6 +50,9 @@ public class JPAEmployeeLeavesService implements EmployeeLeavesService {
   }
 
   public void delete(UUID id) throws EmployeeLeaveNotFoundException {
-    /* implement method */
+    EmployeeLeave leave =
+        employeeLeavesRepository.findById(id).orElseThrow(EmployeeLeaveNotFoundException::new);
+
+    employeeLeavesRepository.delete(leave);
   }
 }
