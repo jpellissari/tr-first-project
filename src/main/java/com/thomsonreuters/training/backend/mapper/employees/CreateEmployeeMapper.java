@@ -41,6 +41,7 @@ public class CreateEmployeeMapper {
         cpfFormatter.unformat(data.getNationalIdentity()),
         LocalDate.parse(data.getBirthdate(), dateFormatter),
         data.getSalary(),
+        true,
         EmployeeTypes.valueOf(data.getType().toUpperCase()));
   }
 }
