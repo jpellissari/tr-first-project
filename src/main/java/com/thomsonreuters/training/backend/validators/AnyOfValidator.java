@@ -11,7 +11,7 @@ public class AnyOfValidator implements ConstraintValidator<AnyOf, CharSequence> 
 
   @Override
   public void initialize(AnyOf annotation) {
-    acceptedValues = Stream.of(annotation.anyOf()).collect(Collectors.toList());
+    acceptedValues = Stream.of(annotation.value()).collect(Collectors.toList());
   }
 
   @Override

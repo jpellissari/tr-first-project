@@ -18,7 +18,7 @@ import javax.validation.Payload;
 @Documented
 @Constraint(validatedBy = AnyOfValidator.class)
 public @interface AnyOf {
-  String[] anyOf();
+  String[] value();
 
   String message() default "{com.thomsonreuters.training.backend.validators.AnyOf.message}";
 
