@@ -68,7 +68,7 @@ public class JobPositionsController {
     data.setId(id);
     JobPosition jobPosition = jobPositionsService.update(updateJobPositionMapper.toEntity(data));
 
-    return ResponseEntity.ok(jobPosition);
+    return ResponseEntity.ok(jobPositionMapper.toDto(jobPosition));
   }
 
   @DeleteMapping("/{id}")
