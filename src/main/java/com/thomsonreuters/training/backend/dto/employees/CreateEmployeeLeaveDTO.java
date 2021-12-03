@@ -14,13 +14,13 @@ public class CreateEmployeeLeaveDTO {
 
   @NotEmpty
   @AnyOf({
-    "contributors_death",
-    "maternity_leave",
-    "paternity_leave",
-    "work_injury",
-    "vacation",
-    "termination",
-    "others"
+    "CONTRIBUTORS_DEATH",
+    "MATERNITY_LEAVE",
+    "PATERNITY_LEAVE",
+    "WORK_INJURY",
+    "VACATION",
+    "TERMINATION",
+    "OTHERS",
   })
   private String leaveType;
 
@@ -31,7 +31,7 @@ public class CreateEmployeeLeaveDTO {
   @Min(value = 0)
   private Integer numberDays;
 
-  @AnyOf({"typical", "professional_disease", "commuting_accident"})
+  @AnyOf({"TYPICAL", "PROFESSIONAL_DISEASE", "COMMUTING-ACCIDENT"})
   private String type;
 
   public String getClientId() {
