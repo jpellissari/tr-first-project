@@ -12,9 +12,13 @@ import com.thomsonreuters.training.backend.mapper.employees.EmployeeMapper;
 import com.thomsonreuters.training.backend.mapper.employees.UpdateEmployeeMapper;
 import com.thomsonreuters.training.backend.model.Employee;
 import com.thomsonreuters.training.backend.service.EmployeesService;
+import net.kaczmarzyk.spring.data.jpa.domain.Equal;
+import net.kaczmarzyk.spring.data.jpa.web.annotation.Spec;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/employees")
 public class EmployeesController {
@@ -34,8 +39,10 @@ public class EmployeesController {
   @Autowired private UpdateEmployeeMapper updateEmployeeMapper;
 
   @GetMapping
-  public List<EmployeeDTO> index() {
-    return employeesService.getAll().stream()
+  public List<EmployeeDTO> index(
+      @Spec(path = "client.identifier", params = "client", spec = Equal.class)
+          Specification<Employee> specification) {
+    return employeesService.getAll(specification).stream()
         .map(employee -> employeeMapper.toDto(employee))
         .collect(Collectors.toList());
   }
