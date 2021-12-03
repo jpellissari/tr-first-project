@@ -10,7 +10,7 @@ import com.thomsonreuters.training.backend.model.Client;
 import com.thomsonreuters.training.backend.model.Employee;
 import com.thomsonreuters.training.backend.model.EmployeeLeave;
 import com.thomsonreuters.training.backend.model.EmployeeLeaveTypes;
-import com.thomsonreuters.training.backend.model.LeaveTypes;
+import com.thomsonreuters.training.backend.model.leavetypes.LeaveTypes;
 import com.thomsonreuters.training.backend.repository.ClientsRepository;
 import com.thomsonreuters.training.backend.repository.EmployeesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +37,11 @@ public class CreateEmployeeLeaveMapper {
 
     employeeLeave.setClient(client);
     employeeLeave.setEmployee(employee);
-    employeeLeave.setLeaveType(LeaveTypes.valueOf(data.getLeaveType().toUpperCase()));
+    employeeLeave.setLeaveType(LeaveTypes.valueOf(data.getLeaveType()));
     employeeLeave.setLeaveDate(LocalDate.parse(data.getLeaveDate(), dateFormatter));
-    if (data.getLeaveType().equals("vacation")) {
-      employeeLeave.setNumberDays(data.getNumberDays());
-    }
-    if (data.getLeaveType().equals("work_injury")) {
-      employeeLeave.setType(EmployeeLeaveTypes.valueOf(data.getType().toUpperCase()));
+    employeeLeave.setNumberDays(data.getNumberDays());
+    if (data.getLeaveType().equals("WORK_INJURY")) {
+      employeeLeave.setType(EmployeeLeaveTypes.valueOf(data.getType()));
     }
 
     return employeeLeave;

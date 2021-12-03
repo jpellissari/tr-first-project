@@ -19,7 +19,7 @@ public class EmployeeLeaveMapper {
     dto.setId(leave.getIdentifier().toString());
     dto.setClient(clientMapper.toDto(leave.getClient()));
     dto.setEmployee(employeeMapper.toDto(leave.getEmployee()));
-    dto.setLeaveType(leave.getLeaveType().getType());
+    dto.setLeaveType(leave.getLeaveType().toString());
     dto.setLeaveDate(leave.getLeaveDate().format(formatter));
     dto.setNumberDays(leave.getNumberDays());
     if (leave.getReturnDate() != null) {
