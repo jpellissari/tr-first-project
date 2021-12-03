@@ -12,6 +12,7 @@ import com.thomsonreuters.training.backend.model.EmployeeTypes;
 import com.thomsonreuters.training.backend.model.JobPosition;
 import com.thomsonreuters.training.backend.repository.ClientsRepository;
 import com.thomsonreuters.training.backend.repository.JobPositionsRepository;
+import br.com.caelum.stella.format.CPFFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ public class UpdateEmployeeMapper {
 
   public Employee toEntity(UpdateEmployeeDTO data) {
     DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    CPFFormatter cpfFormatter = new CPFFormatter();
 
     Client client =
         this.clientsRepository
@@ -36,7 +38,7 @@ public class UpdateEmployeeMapper {
         client,
         jobPosition,
         data.getName(),
-        data.getNationalIdentity(),
+        cpfFormatter.unformat(data.getNationalIdentity()),
         LocalDate.parse(data.getBirthdate(), dateFormatter),
         data.getSalary(),
         data.isActive(),
