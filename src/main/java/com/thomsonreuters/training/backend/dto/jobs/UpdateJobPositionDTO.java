@@ -6,7 +6,7 @@ import com.thomsonreuters.training.backend.validators.UUID;
 import org.hibernate.validator.constraints.Length;
 
 public class UpdateJobPositionDTO {
-  @NotNull @UUID String id;
+  String id;
 
   @NotEmpty
   @Length(max = 50)
@@ -16,7 +16,7 @@ public class UpdateJobPositionDTO {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@NotNull @UUID String id) {
     this.id = id;
   }
 

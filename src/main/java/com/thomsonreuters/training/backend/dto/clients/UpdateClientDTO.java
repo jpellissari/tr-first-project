@@ -6,7 +6,7 @@ import com.thomsonreuters.training.backend.validators.UUID;
 import org.hibernate.validator.constraints.Length;
 
 public class UpdateClientDTO {
-  @NotNull @UUID String id;
+  String id;
 
   @NotEmpty
   @Length(max = 60)
@@ -22,7 +22,7 @@ public class UpdateClientDTO {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@NotNull @UUID String id) {
     this.id = id;
   }
 
