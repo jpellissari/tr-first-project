@@ -1,9 +1,11 @@
 package com.thomsonreuters.training.backend.dto.employees;
 
+import com.thomsonreuters.training.backend.dto.clients.ClientDTO;
+
 public class SimplifiedEmployeeLeaveDTO {
   private String id;
-  private String clientId;
-  private String employeeId;
+  private ClientDTO client;
+  private SimplifiedEmployeeDTO employee;
   private String leaveType;
   private String leaveDate;
   private Integer numberDays;
@@ -18,20 +20,20 @@ public class SimplifiedEmployeeLeaveDTO {
     this.id = id;
   }
 
-  public String getClientId() {
-    return clientId;
+  public ClientDTO getClient() {
+    return client;
   }
 
-  public void setClientId(String clientId) {
-    this.clientId = clientId;
+  public void setClient(ClientDTO client) {
+    this.client = client;
   }
 
-  public String getEmployeeId() {
-    return employeeId;
+  public SimplifiedEmployeeDTO getEmployee() {
+    return employee;
   }
 
-  public void setEmployeeId(String employeeId) {
-    this.employeeId = employeeId;
+  public void setEmployee(SimplifiedEmployeeDTO employee) {
+    this.employee = employee;
   }
 
   public String getLeaveType() {
