@@ -7,6 +7,7 @@ import com.thomsonreuters.training.backend.exception.EmployeeNotFoundException;
 import com.thomsonreuters.training.backend.model.Employee;
 import com.thomsonreuters.training.backend.repository.EmployeesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,8 +25,8 @@ public class EmployeesService {
     return !oldEmployee.getClient().equals(newEmployee.getClient());
   }
 
-  public List<Employee> getAll() {
-    return employeesRepository.findAll();
+  public List<Employee> getAll(Specification<Employee> specification) {
+    return employeesRepository.findAll(specification);
   }
 
   public Employee get(UUID id) {
